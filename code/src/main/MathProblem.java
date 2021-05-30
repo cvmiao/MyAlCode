@@ -1,5 +1,8 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Classname MathProblem
  * @Description 数学方法解决的问题
@@ -23,7 +26,6 @@ public class MathProblem {
         if (n < 1) {
             return 0;
         }
-
         if (n == 1 || n == 2) {
             return n;
         }
@@ -57,6 +59,31 @@ public class MathProblem {
             two = one;
             //下一次最后跨一步的走法
             one = sum;
+        }
+        return sum;
+    }
+
+    /**
+     * 数学解法    阶乘排序思路
+     * x+2y =n
+     * x+y = m
+     * 计算有多少种走法即x:0——>n的情况下总共有多少种xy的排列方法
+     */
+    public static int solveFloorProblemsByFactorial(int n) {
+        Map<Integer, Integer> mulResults = new HashMap<>(n + 1);
+        mulResults.put(0, 1);
+        for (int num = 1; num < n + 1; num++) {
+            mulResults.put(num, mulResults.get(num - 1) * num);
+        }
+        int y2;
+        int sum = 0;
+        for (int x = 0; x < n + 1; x++) {
+            int y = 0;
+            y2 = n - x;
+            if (y2 % 2 == 0) {
+                y = y2 / 2;
+                sum += mulResults.get(x + y) / mulResults.get(x) / mulResults.get(y);
+            }
         }
         return sum;
     }
