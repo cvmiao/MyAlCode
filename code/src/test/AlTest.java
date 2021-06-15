@@ -2,10 +2,10 @@ package test;
 
 import junit.framework.TestCase;
 import main.FirstDay;
+import main.MathProblem;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @Classname FirstDayTest
@@ -41,9 +41,22 @@ public class AlTest {
         int[] numbers = {3, 2, 4};
         int[] result = FirstDay.findTwoSum(numbers, 6);
         assert Objects.deepEquals(new int[]{1, 2}, result);
+        Set aas = new LinkedHashSet<>();
+
         assert Arrays.equals(new int[]{
                 1, 2
         }, result);
     }
 
+    @Test
+    public void findMedianSortedArraysTest() {
+        int[] num1 = {1};
+        int[] num2 = {2, 3};
+        assert 2.0 == MathProblem.findMedianSortedArrays(num1, num2);
+        String.join("12", new String[]{"qww", "eee"});
+        String.join("oo", new ArrayList<String>() {{
+            add("ddd");
+            add("sss");
+        }});
+    }
 }

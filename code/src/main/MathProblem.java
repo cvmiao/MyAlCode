@@ -1,7 +1,7 @@
 package main;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.swing.tree.TreeNode;
+import java.util.*;
 
 /**
  * @Classname MathProblem
@@ -86,5 +86,80 @@ public class MathProblem {
             }
         }
         return sum;
+    }
+
+    /**
+     * 寻找两个正序数组的中位数
+     *
+     * @param nums1 数组1 nums2数组2
+     * @return double 中位数
+     * @author qqg
+     * @date 2021/06/06
+     */
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+
+        List<Integer> numbers = new ArrayList<>();
+        for (int i : nums1) {
+            numbers.add(i);
+        }
+        for (int i : nums2) {
+            numbers.add(i);
+        }
+        Collections.sort(numbers);
+        if (numbers.size() == 0) {
+            return 0.0;
+        }
+        int size = numbers.size();
+        if (numbers.size() % 2 == 1) {
+            return numbers.get(size / 2);
+        }
+        return (numbers.get(size / 2) + numbers.get(size / 2 - 1)) / 2.0;
+    }
+
+    public ArrayList<Integer> printListFromTailToHead(ListNode headNode) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<ListNode> stack = new Stack<>();
+        while (headNode != null) {
+            stack.push(headNode);
+            headNode = headNode.next;
+        }
+        while (!stack.isEmpty()) {
+            list.add(stack.pop().val);
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> printListFromTailToHead2(ListNode headNode) {
+        ArrayList<Integer> results = new ArrayList<>();
+        if(Objects.isNull(headNode)){
+           return results;
+        }
+        results.add(headNode.val);
+        if(Objects.isNull(headNode.next)){
+            return results;
+        }
+        results.addAll(printListFromTailToHead2(headNode.next))
+        return results;
+    }
+
+
+    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+        if (pre == null || in == null || pre.length == 0 || in.length == 0)
+        {
+            return null;
+        }
+        if (pre.length != in.length) {
+            return null;
+        }
+        TreeNode root = new TreeNode(pre[0]);
+        for (int i = 0; i < pre.length; i++) {
+            if (pre[0] == in[i]) {
+                root.left = reConstructBinaryTree(Arrays.copyOfRange(pre, 1,
+                        i + 1), Arrays.copyOfRange(in, 0, i));
+                root.right = reConstructBinaryTree(Arrays.copyOfRange(pre,
+                        i + 1, pre.length), Arrays.copyOfRange(in, i + 1, in.length));
+            }
+        }
+        return root;
     }
 }
