@@ -1,3 +1,4 @@
+/*
 package test;
 
 import junit.framework.TestCase;
@@ -7,12 +8,14 @@ import org.junit.Test;
 
 import java.util.*;
 
+*/
 /**
  * @Classname FirstDayTest
  * @Description TODO
  * @Date 2021/5/30 8:14
  * @Created by cvmao
- */
+ *//*
+
 public class AlTest {
     @Test
     public void isPowerOfTwoTest() {
@@ -60,3 +63,4 @@ public class AlTest {
         }});
     }
 }
+*/
